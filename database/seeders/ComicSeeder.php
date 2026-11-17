@@ -33,7 +33,7 @@ class ComicSeeder extends Seeder
             'comic' => 'Spider-Man: Blue',
             'portada' => $this->portada('spider-man-blue.jpg'),
             'sinopsis' => 'Una emotiva mirada nostálgica donde Peter Parker recuerda su primer amor, Gwen Stacy, y los eventos formativos de sus primeros años como héroe.',
-            'precio' => 8500.00,
+            'precio' => 32000.00,
             'autor_id' => $loeb->id,
             'editorial_id' => $marvel->id,
         ]);
@@ -43,7 +43,7 @@ class ComicSeeder extends Seeder
             'comic' => 'Batman: Year One',
             'portada' => $this->portada('batman-year-one.jpg'),
             'sinopsis' => 'La génesis definitiva del Caballero Oscuro combatiendo el hampa y la corrupción en Gotham en paralelo a los inicios del teniente Gordon.',
-            'precio' => 9200.00,
+            'precio' => 38000.00,
             'autor_id' => $miller->id,
             'editorial_id' => $dc->id,
         ]);
@@ -53,7 +53,7 @@ class ComicSeeder extends Seeder
             'comic' => 'The Dark Knight Returns',
             'portada' => $this->portada('the-dark-knight-returns.jpg'),
             'sinopsis' => 'Un veterano Bruce Wayne de 55 años decide volver a ponerse la capa para salvar a una Gotham sumergida en el caos y el crimen mutante.',
-            'precio' => 10500.50,
+            'precio' => 54000.00,
             'autor_id' => $miller->id,
             'editorial_id' => $dc->id,
         ]);
@@ -63,7 +63,7 @@ class ComicSeeder extends Seeder
             'comic' => 'All-Star Superman',
             'portada' => $this->portada('all-star-superman.jpg'),
             'sinopsis' => 'Tras una sobrecarga solar celular, Superman afronta sus últimos días cumpliendo hazañas memorables en beneficio de la humanidad.',
-            'precio' => 11000.00,
+            'precio' => 62000.00,
             'autor_id' => $morrison->id,
             'editorial_id' => $dc->id,
         ]);
@@ -73,7 +73,7 @@ class ComicSeeder extends Seeder
             'comic' => 'The Amazing Spider-Man: Orígenes',
             'portada' => $this->portada('the-amazing-spider-man-origenes.jpg'),
             'sinopsis' => 'Las míticas historias fundacionales que presentan la picadura de la araña radiactiva, el tío Ben y la máxima de que un gran poder conlleva una gran responsabilidad.',
-            'precio' => 7800.00,
+            'precio' => 29000.00,
             'autor_id' => $stanLee->id,
             'editorial_id' => $marvel->id,
         ]);
@@ -83,7 +83,7 @@ class ComicSeeder extends Seeder
             'comic' => 'Batman: The Killing Joke',
             'portada' => $this->portada('batman-the-killing-joke.jpg'),
             'sinopsis' => 'El Joker intenta demostrar que un mal día basta para volver loco al hombre más sensato, poniendo a prueba los límites psicológicos de Batman y James Gordon.',
-            'precio' => 6900.00,
+            'precio' => 34000.00,
             'autor_id' => $moore->id,
             'editorial_id' => $dc->id,
         ]);
@@ -94,7 +94,7 @@ class ComicSeeder extends Seeder
             'comic' => 'Superman/Batman: Enemigos públicos',
             'portada' => $this->portada('superman-batman-enemigos-publicos.jpg'),
             'sinopsis' => 'Lex Luthor, presidente de Estados Unidos, pone precio a la cabeza de Superman y Batman sale a cubrirle la espalda.',
-            'precio' => 9800.00,
+            'precio' => 36000.00,
             'autor_id' => $loeb->id,
             'editorial_id' => $dc->id,
         ]);
