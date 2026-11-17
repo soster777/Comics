@@ -23,7 +23,7 @@
 
                 <div class="col-md-6">
                     <label for="precio" class="form-label">Precio de tapa</label>
-                    <input type="number" step="0.01" name="precio" id="precio" class="form-control @error('precio') is-invalid @enderror" value="{{ old('precio') }}">
+                    <input type="number" step="0.01" min="0" name="precio" id="precio" class="form-control @error('precio') is-invalid @enderror" value="{{ old('precio') }}">
                     @error('precio')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
