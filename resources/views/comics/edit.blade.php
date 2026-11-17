@@ -8,7 +8,7 @@
         <h2 class="titulo-seccion">Editar cómic</h2>
 
         {{-- enctype multipart/form-data: sin esto el archivo de la portada no viaja --}}
-        <form action="{{ route('comics.update', $comic->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('comics.update', $comic->id) }}" method="POST" class="ficha" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 

@@ -11,7 +11,8 @@
             <a href="{{ route('admin.usuarios.create') }}" class="btn btn-primary">Nuevo usuario</a>
         </div>
 
-        <table class="table align-middle">
+        <div class="ficha">
+        <table class="table align-middle mb-0">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -52,6 +53,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 @endsection

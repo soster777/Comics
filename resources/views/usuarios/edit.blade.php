@@ -7,7 +7,7 @@
     <div class="col-md-6">
         <h2 class="titulo-seccion">Editar usuario</h2>
 
-        <form action="{{ route('admin.usuarios.update', $usuario->id) }}" method="POST">
+        <form action="{{ route('admin.usuarios.update', $usuario->id) }}" method="POST" class="ficha">
             @csrf
             @method('PUT')
 

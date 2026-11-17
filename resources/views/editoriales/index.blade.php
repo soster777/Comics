@@ -14,7 +14,8 @@
         @if($editoriales->isEmpty())
             <p class="text-center text-muted my-5">Todavía no hay editoriales cargadas.</p>
         @else
-            <table class="table align-middle">
+            <div class="ficha">
+            <table class="table align-middle mb-0">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -43,6 +44,7 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
         @endif
     </div>
 </div>

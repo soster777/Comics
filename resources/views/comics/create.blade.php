@@ -8,7 +8,7 @@
         <h2 class="titulo-seccion">Nuevo cómic</h2>
 
         {{-- enctype multipart/form-data: sin esto el archivo de la portada no viaja --}}
-        <form action="{{ route('comics.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('comics.store') }}" method="POST" class="ficha" enctype="multipart/form-data">
             @csrf
 
             <div class="row g-3">

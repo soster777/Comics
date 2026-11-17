@@ -7,7 +7,7 @@
     <div class="col-md-6">
         <h2 class="titulo-seccion">Editar editorial</h2>
 
-        <form action="{{ route('admin.editoriales.update', $editorial->id) }}" method="POST">
+        <form action="{{ route('admin.editoriales.update', $editorial->id) }}" method="POST" class="ficha">
             @csrf
             @method('PUT')
 

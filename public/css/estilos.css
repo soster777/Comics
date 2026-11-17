@@ -180,3 +180,16 @@ footer {
     background-color: #f4f6f8;
     color: #777;
 }
+/* Ficha: el recuadro azul de los formularios y listados del admin */
+.ficha {
+    background-color: #fff;
+    border: 2px solid var(--azul);
+    border-radius: 0.75rem;
+    box-shadow: 0 6px 16px rgba(29, 90, 138, 0.12);
+    padding: 1.75rem;
+}
+
+.ficha .form-label,
+.ficha th {
+    font-weight: 700;
+}
