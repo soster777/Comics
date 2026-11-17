@@ -39,33 +39,36 @@
                 </div>
 
                 <div class="col-12 col-md-4 order-3">
-                    <div class="d-flex flex-wrap gap-2 justify-content-md-end align-items-center">
-                        {{-- @admin: directiva propia (está en AppServiceProvider), solo la ve el admin --}}
-                        @admin
-                            <a href="{{ route('comics.create') }}" class="btn btn-primary">Nuevo cómic</a>
-                            <a href="{{ route('admin.editoriales.index') }}" class="btn btn-outline-primary">Editoriales</a>
-                            <a href="{{ route('admin.consultas.index') }}" class="btn btn-outline-primary">Consultas</a>
-                            <a href="{{ route('admin.usuarios.index') }}" class="btn btn-outline-primary">Usuarios</a>
-                        @endadmin
+                    {{-- menú de la cuenta: el dropdown lo abre el JS de Bootstrap que se carga al final --}}
+                    <div class="dropdown text-md-end">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Mi cuenta">
+                            <i class="bi bi-person-circle fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            {{-- @guest: solo lo ve quien NO inició sesión --}}
+                            @guest
+                                <li><a class="dropdown-item" href="{{ route('auth.login') }}">Iniciar sesión</a></li>
+                                <li><a class="dropdown-item" href="{{ route('auth.register') }}">Registrarse</a></li>
+                            @endguest
 
-                        {{-- @guest: solo lo ve quien NO inició sesión --}}
-                        @guest
-                            <a href="{{ route('auth.login') }}" class="btn btn-outline-secondary">Ingresar</a>
-                            <a href="{{ route('auth.register') }}" class="btn btn-outline-secondary">Registrarse</a>
-                        @endguest
-
-                        {{-- @auth: solo lo ve quien inició sesión --}}
-                        @auth
-                            <span class="small text-muted">
-                                Hola, {{ auth()->user()->name }}
-                                @admin<span class="badge text-bg-primary ms-1">Admin</span>@endadmin
-                            </span>
-                            {{-- el logout va por POST con @csrf, no con un link --}}
-                            <form action="{{ route('auth.logout') }}" method="POST" class="m-0">
-                                @csrf
-                                <button type="submit" class="btn btn-outline-secondary">Cerrar sesión</button>
-                            </form>
-                        @endauth
+                            {{-- @auth: solo lo ve quien inició sesión --}}
+                            @auth
+                                <li>
+                                    <span class="dropdown-item-text small text-muted">
+                                        Hola, {{ auth()->user()->name }}
+                                        @admin<span class="badge text-bg-primary ms-1">Admin</span>@endadmin
+                                    </span>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    {{-- el logout va por POST con @csrf, no con un link --}}
+                                    <form action="{{ route('auth.logout') }}" method="POST" class="m-0">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                                    </form>
+                                </li>
+                            @endauth
+                        </ul>
                     </div>
                 </div>
 
@@ -76,6 +79,25 @@
     <nav class="menu-azul">
         <div class="container">
             <ul class="nav justify-content-center">
+                {{-- @admin: directiva propia (está en AppServiceProvider). El admin ve su menú de gestión
+                     y el resto ve el del catálogo --}}
+                @admin
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('comics.index') ? 'active' : '' }}" href="{{ route('comics.index') }}">Cómics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('comics.create') ? 'active' : '' }}" href="{{ route('comics.create') }}">Nuevo cómic</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.editoriales.*') ? 'active' : '' }}" href="{{ route('admin.editoriales.index') }}">Editoriales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.consultas.*') ? 'active' : '' }}" href="{{ route('admin.consultas.index') }}">Consultas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.usuarios.*') ? 'active' : '' }}" href="{{ route('admin.usuarios.index') }}">Usuarios</a>
+                </li>
+                @else
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Inicio</a>
                 </li>
@@ -90,14 +112,13 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('contacto.create') ? 'active' : '' }}" href="{{ route('contacto.create') }}">Contacto</a>
                 </li>
-                {{-- el historial es para el cliente: logueado y que no sea admin --}}
+                {{-- el historial es para el cliente: acá ya sabemos que no es admin --}}
                 @auth
-                    @unless(auth()->user()->is_admin)
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('contacto.mis') ? 'active' : '' }}" href="{{ route('contacto.mis') }}">Mis consultas</a>
-                        </li>
-                    @endunless
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('contacto.mis') ? 'active' : '' }}" href="{{ route('contacto.mis') }}">Mis consultas</a>
+                    </li>
                 @endauth
+                @endadmin
             </ul>
         </div>
     </nav>
