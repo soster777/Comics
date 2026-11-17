@@ -1,6 +1,7 @@
 :root {
     --azul: #1d5a8a;
     --azul-oscuro: #164a72;
+    --rojo: #a31515;
 }
 
 /* Tipografías: Comix Loud para títulos (archivo local), Bangers para el logo y Ubuntu Sans para el resto */
@@ -177,8 +178,8 @@ main {
 }
 
 footer {
-    background-color: var(--azul-oscuro);
-    color: #dbe7f1;
+    background-color: var(--rojo);
+    color: #fde8e8;
 }
 
 footer a {
