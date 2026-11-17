@@ -15,8 +15,10 @@ class ComicController extends Controller
     {
         $totalComics = Comic::count();
         $destacados = Comic::with(['autor', 'superheroes', 'editorial'])->orderBy('id', 'desc')->take(3)->get();
+        // para que el banner lleve a los cómics de Marvel (si la borraron, queda null)
+        $marvel = Editorial::where('nombre', 'Marvel Comics')->first();
 
-        return view('home', compact('totalComics', 'destacados'));
+        return view('home', compact('totalComics', 'destacados', 'marvel'));
     }
 
     public function index(Request $request)

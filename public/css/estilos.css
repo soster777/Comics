@@ -223,3 +223,14 @@ footer a:hover {
     text-shadow: 4px 4px 0 #d32f2f, 7px 7px 0 #000;
     transform: rotate(-3deg);
 }
+
+/* Banner de la home */
+.banner img {
+    border-radius: 0.75rem;
+    transition: transform 0.15s;
+    width: 100%;
+}
+
+.banner:hover img {
+    transform: scale(1.01);
+}

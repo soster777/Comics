@@ -3,6 +3,11 @@
 @section('title', 'Inicio - Catálogo de Cómics')
 
 @section('content')
+{{-- banner de la promo: al hacer clic lleva a los cómics de Marvel --}}
+<a href="{{ $marvel ? route('comics.index', ['editorial_id' => $marvel->id]) : route('comics.index') }}" class="banner d-block mt-4">
+    <img src="{{ asset('img/banner-marvel.jpg') }}" alt="Envío gratis en compras de más de $80.000 - Marvel" class="img-fluid">
+</a>
+
 <section class="bienvenida mt-4">
     <h1 class="fw-bold">Catálogo de cómics</h1>
     @admin<p class="text-muted mb-4">Hay {{ $totalComics }} cómics cargados. Podés verlos, agregar nuevos, editarlos o eliminarlos.</p>@endadmin
