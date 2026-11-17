@@ -7,6 +7,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Ubuntu+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -31,9 +32,9 @@
                 <div class="col-12 col-md-4 order-1 order-md-2 text-center">
                     <a href="{{ route('home') }}" class="logo">
                         {{-- LOGO: si tenés uno, guardalo en public/img/logo.png y reemplazá
-                             el ícono y el texto de abajo por:
+                             el texto de abajo por:
                              <img src="{{ asset('img/logo.png') }}" alt="Logo" height="45"> --}}
-                        <i class="bi bi-book-half"></i> Cómics
+                        Cómics
                     </a>
                 </div>
 
@@ -44,6 +45,7 @@
                             <a href="{{ route('comics.create') }}" class="btn btn-primary">Nuevo cómic</a>
                             <a href="{{ route('admin.editoriales.index') }}" class="btn btn-outline-primary">Editoriales</a>
                             <a href="{{ route('admin.consultas.index') }}" class="btn btn-outline-primary">Consultas</a>
+                            <a href="{{ route('admin.usuarios.index') }}" class="btn btn-outline-primary">Usuarios</a>
                         @endadmin
 
                         {{-- @guest: solo lo ve quien NO inició sesión --}}

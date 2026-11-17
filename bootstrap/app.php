@@ -23,6 +23,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // por defecto busca una ruta llamada 'login' y la nuestra se llama 'auth.login'
         // (en Laravel 10 esto iba en app/Http/Middleware/Authenticate.php)
         $middleware->redirectGuestsTo(fn () => route('auth.login'));
+
+        // en Render el https lo atiende un proxy: así Laravel arma los links con https y no con http
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

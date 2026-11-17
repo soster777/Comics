@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\EditorialController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ComicController::class, 'home'])->name('home');
@@ -50,4 +51,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // todas las consultas que llegaron por contacto
     Route::get('/admin/consultas', [ContactoController::class, 'index'])->name('admin.consultas.index');
+
+    // gestión de usuarios
+    Route::get('/admin/usuarios', [UserController::class, 'index'])->name('admin.usuarios.index');
+    Route::get('/admin/usuarios/crear', [UserController::class, 'create'])->name('admin.usuarios.create');
+    Route::post('/admin/usuarios', [UserController::class, 'store'])->name('admin.usuarios.store');
+    Route::get('/admin/usuarios/{id}/editar', [UserController::class, 'edit'])->name('admin.usuarios.edit')->whereNumber('id');
+    Route::put('/admin/usuarios/{id}', [UserController::class, 'update'])->name('admin.usuarios.update')->whereNumber('id');
+    Route::delete('/admin/usuarios/{id}', [UserController::class, 'destroy'])->name('admin.usuarios.destroy')->whereNumber('id');
 });

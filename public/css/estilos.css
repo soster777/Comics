@@ -3,6 +3,25 @@
     --azul-oscuro: #164a72;
 }
 
+/* Tipografías: Comix Loud para títulos (archivo local), Bangers para el logo y Ubuntu Sans para el resto */
+@font-face {
+    font-family: 'Comix Loud';
+    src: url('../fonts/comix-loud.ttf') format('truetype');
+    font-display: swap;
+}
+
+body {
+    font-family: 'Ubuntu Sans', 'Ubuntu', sans-serif;
+}
+
+h1, h2,
+.titulo-seccion {
+    font-family: 'Comix Loud', 'Ubuntu Sans', sans-serif;
+    font-weight: normal; /* la fuente trae un solo peso, así no la engrosa el navegador */
+    letter-spacing: 0.03em;
+    text-transform: uppercase; /* la fuente no trae minúsculas: así todo el título sale con ella */
+}
+
 body {
     background-color: #fff;
     color: #333;
@@ -27,15 +46,24 @@ main {
 
 /* Cabecera */
 .logo {
-    color: var(--azul);
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-family: 'Bangers', sans-serif; /* fuente propia del logo, distinta a la de los títulos */
+    letter-spacing: 0.05em;
+    color: #ffd600;
+    display: inline-block; /* sin esto el rotate no se aplica a un <a> */
+    font-size: 3rem;
+    -webkit-text-stroke: 2px #000;
+    paint-order: stroke fill; /* el borde va por detrás del relleno, así no se come la letra */
     text-decoration: none;
+    text-shadow: 3px 3px 0 #d32f2f, 5px 5px 0 #000;
+    transform: rotate(-3deg);
+    transition: transform 0.15s;
 }
 
 .logo:hover {
-    color: var(--azul-oscuro);
+    color: #ffd600;
+    transform: rotate(-3deg) scale(1.05);
 }
+
 
 
 .menu-azul {
@@ -58,7 +86,6 @@ main {
 .titulo-seccion {
     color: var(--azul);
     font-size: 1.6rem;
-    font-weight: 700;
     margin: 2.5rem 0 2rem;
     text-align: center;
 }
@@ -142,6 +169,11 @@ main {
     background-color: #f4f6f8;
     padding: 3rem 1rem;
     text-align: center;
+}
+
+/* separa el título del botón (sin el párrafo de admin quedaban pegados) */
+.bienvenida h1 {
+    margin-bottom: 2.5rem;
 }
 
 footer {

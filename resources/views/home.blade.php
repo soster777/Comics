@@ -5,7 +5,7 @@
 @section('content')
 <section class="bienvenida mt-4">
     <h1 class="fw-bold">Catálogo de cómics</h1>
-    <p class="text-muted mb-4">Hay {{ $totalComics }} cómics cargados. Podés verlos, agregar nuevos, editarlos o eliminarlos.</p>
+    @admin<p class="text-muted mb-4">Hay {{ $totalComics }} cómics cargados. Podés verlos, agregar nuevos, editarlos o eliminarlos.</p>@endadmin
     <a href="{{ route('comics.index') }}" class="btn btn-primary">Ver todos los cómics</a>
 </section>
 

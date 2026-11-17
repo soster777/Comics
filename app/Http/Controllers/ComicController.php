@@ -30,9 +30,10 @@ class ComicController extends Controller
             // si escribieron algo, busco en el título y en la sinopsis
             ->when($buscar !== '', function ($consulta) use ($buscar) {
                 // el OR va agrupado entre paréntesis para que no se coma el filtro de editorial
+                // whereLike no distingue mayúsculas en MySQL ni en Postgres (en Postgres el like común sí distingue)
                 $consulta->where(function ($q) use ($buscar) {
-                    $q->where('comic', 'like', "%{$buscar}%")
-                        ->orWhere('sinopsis', 'like', "%{$buscar}%");
+                    $q->whereLike('comic', "%{$buscar}%")
+                        ->orWhereLike('sinopsis', "%{$buscar}%");
                 });
             })
             // si vino una editorial desde el menú, me quedo solo con esa
