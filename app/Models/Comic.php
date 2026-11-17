@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Comic extends Model
 {
@@ -34,9 +33,10 @@ class Comic extends Model
     }
 
     // accessor: permite escribir $comic->portada_url en las vistas.
-    // arma la URL pública (/storage/portadas/...) a partir del path guardado en la columna portada
+    // arma la URL pública (/storage/portadas/...) con asset(), que usa la dirección de la página que se está viendo.
+    // así anda igual en localhost y en Render sin depender de APP_URL
     public function getPortadaUrlAttribute(): ?string
     {
-        return $this->portada ? Storage::disk('public')->url($this->portada) : null;
+        return $this->portada ? asset('storage/'.$this->portada) : null;
     }
 }
