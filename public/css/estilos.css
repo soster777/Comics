@@ -177,9 +177,26 @@ main {
 }
 
 footer {
-    background-color: #f4f6f8;
-    color: #777;
+    background-color: var(--azul-oscuro);
+    color: #dbe7f1;
 }
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ffd600;
+}
+
+.footer-titulo {
+    color: #ffd600;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
 /* Ficha: el recuadro azul de los formularios y listados del admin */
 .ficha {
     background-color: #fff;
@@ -192,4 +209,16 @@ footer {
 .ficha .form-label,
 .ficha th {
     font-weight: 700;
+}
+
+/* Página 404: el número con el mismo estilo de cómic que el logo */
+.error-numero {
+    color: #ffd600;
+    font-family: 'Bangers', sans-serif;
+    font-size: 7rem;
+    line-height: 1;
+    -webkit-text-stroke: 3px #000;
+    paint-order: stroke fill;
+    text-shadow: 4px 4px 0 #d32f2f, 7px 7px 0 #000;
+    transform: rotate(-3deg);
 }

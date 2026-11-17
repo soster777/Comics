@@ -145,8 +145,29 @@
         @yield('content')
     </main>
 
-    <footer class="py-3 mt-4">
-        <div class="container small text-center">Catálogo de cómics &middot; Laravel</div>
+    <footer class="pt-4 pb-3 mt-4">
+        <div class="container">
+            <div class="row g-4 text-center text-md-start">
+                <div class="col-md-4">
+                    <p class="footer-titulo">Cómics</p>
+                    <p class="small mb-0">El catálogo de cómics de Marvel, DC y más.</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="footer-titulo">Contacto</p>
+                    <ul class="list-unstyled small mb-0">
+                        <li><i class="bi bi-envelope me-1"></i><a href="mailto:contactocomics@gmail.com">contactocomics@gmail.com</a></li>
+                        <li><i class="bi bi-chat-dots me-1"></i><a href="{{ route('contacto.create') }}">Formulario de contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <p class="footer-titulo">Redes sociales</p>
+                    <a href="https://www.instagram.com/comics_ar" target="_blank" rel="noopener" class="small"><i class="bi bi-instagram me-1"></i>@comics_ar</a>
+                </div>
+            </div>
+            <hr>
+            {{-- date('Y') pone el año actual, así no hay que cambiarlo a mano --}}
+            <p class="small text-center mb-0">&copy; {{ date('Y') }} Catálogo de cómics. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

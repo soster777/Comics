@@ -60,3 +60,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/usuarios/{id}', [UserController::class, 'update'])->name('admin.usuarios.update')->whereNumber('id');
     Route::delete('/admin/usuarios/{id}', [UserController::class, 'destroy'])->name('admin.usuarios.destroy')->whereNumber('id');
 });
+
+// cualquier dirección que no existe: pasa por el grupo web (con sesión), así el 404 muestra el menú del que está logueado
+Route::fallback(fn () => abort(404));
