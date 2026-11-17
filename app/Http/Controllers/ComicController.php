@@ -59,7 +59,7 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         // si la validación falla, Laravel vuelve al formulario con los errores y lo que habían escrito
-        $datos = $this->validated($request);
+        $datos = $this->guardarNuevos($this->validated($request));
 
         if ($request->hasFile('portada')) {
             // guarda el archivo en storage/app/public/portadas con un nombre aleatorio
@@ -101,7 +101,7 @@ class ComicController extends Controller
     public function update(Request $request, $id)
     {
         $comic = Comic::findOrFail($id);
-        $datos = $this->validated($request);
+        $datos = $this->guardarNuevos($this->validated($request));
 
         if ($request->hasFile('portada')) {
             // subieron una portada nueva: borro la vieja del disco y guardo la nueva
@@ -147,15 +147,36 @@ class ComicController extends Controller
         return $request->validate([
             'comic' => 'required|string|max:255',
             'precio' => 'required|numeric|min:0',
-            'autor_id' => 'required|exists:autores,id',
-            // checkboxes name="superheroes[]": llega un array de ids, al menos uno
-            'superheroes' => 'required|array|min:1',
+            // "otro" no es un id: en ese caso el nombre viene en autor_nuevo
+            'autor_id' => $request->input('autor_id') === 'otro' ? 'required' : 'required|exists:autores,id',
+            'autor_nuevo' => 'required_if:autor_id,otro|nullable|string|max:255',
+            // checkboxes name="superheroes[]": al menos uno tildado, o uno nuevo escrito
+            'superheroes' => 'required_without:superheroe_nuevo|array',
             'superheroes.*' => 'exists:superheroes,id',
+            'superheroe_nuevo' => 'nullable|string|max:255',
             'editorial_id' => 'required|exists:editoriales,id',
             'sinopsis' => 'nullable|string',
             // opcional; si viene, tiene que ser jpg o png de hasta 2 MB (max va en KB)
             'portada' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+    }
+
+    // si escribieron un autor o superhéroe nuevo, lo guarda y lo deja como uno más de la lista.
+    // firstOrCreate: si ya existe uno con ese nombre lo reusa, así no se duplica
+    private function guardarNuevos(array $datos): array
+    {
+        if ($datos['autor_id'] === 'otro') {
+            $datos['autor_id'] = Autor::firstOrCreate(['nombre' => $datos['autor_nuevo']])->id;
+        }
+
+        $datos['superheroes'] = $datos['superheroes'] ?? [];
+        if (! empty($datos['superheroe_nuevo'])) {
+            $datos['superheroes'][] = Superheroe::firstOrCreate(['nombre' => $datos['superheroe_nuevo']])->id;
+        }
+
+        unset($datos['autor_nuevo'], $datos['superheroe_nuevo']);
+
+        return $datos;
     }
 
     // borra el archivo de la portada del disco "public", si el cómic tiene una

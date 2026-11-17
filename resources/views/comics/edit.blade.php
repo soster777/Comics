@@ -45,13 +45,19 @@
 
                 <div class="col-md-6">
                     <label for="autor_id" class="form-label">Autor</label>
-                    <select name="autor_id" id="autor_id" class="form-select @error('autor_id') is-invalid @enderror">
+                    {{-- al elegir "Otro" se muestra el campo para escribir el autor nuevo --}}
+                    <select name="autor_id" id="autor_id" class="form-select @error('autor_id') is-invalid @enderror" onchange="document.getElementById('autor_nuevo').classList.toggle('d-none', this.value !== 'otro')">
                         <option value="">Elegí un autor</option>
                         @foreach($autores as $autor)
                             <option value="{{ $autor->id }}" {{ old('autor_id', $comic->autor_id) == $autor->id ? 'selected' : '' }}>{{ $autor->nombre }}</option>
                         @endforeach
+                        <option value="otro" {{ old('autor_id') === 'otro' ? 'selected' : '' }}>Otro...</option>
                     </select>
                     @error('autor_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                    <input type="text" name="autor_nuevo" id="autor_nuevo" placeholder="Nombre del autor nuevo" aria-label="Nombre del autor nuevo" class="form-control mt-2 @error('autor_nuevo') is-invalid @enderror {{ old('autor_id') === 'otro' ? '' : 'd-none' }}" value="{{ old('autor_nuevo') }}">
+                    @error('autor_nuevo')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -67,6 +73,10 @@
                             </div>
                         @endforeach
                     </div>
+                    <input type="text" name="superheroe_nuevo" placeholder="¿Otro? Escribí el nombre del superhéroe" aria-label="Superhéroe nuevo" class="form-control mt-2 @error('superheroe_nuevo') is-invalid @enderror" value="{{ old('superheroe_nuevo') }}">
+                    @error('superheroe_nuevo')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                     @error('superheroes')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror

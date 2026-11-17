@@ -29,12 +29,20 @@ return [
         'array' => 'El campo :attribute tiene que tener al menos :min elementos.',
     ],
 
+    // mensajes propios para un campo y una regla puntual
+    'custom' => [
+        'autor_nuevo' => ['required_if' => 'Escribí el nombre del autor nuevo.'],
+        'superheroes' => ['required_without' => 'Tildá al menos un superhéroe o escribí uno nuevo.'],
+    ],
+
     // nombres lindos para los campos, así el mensaje dice "título" y no "comic"
     'attributes' => [
         'comic' => 'título',
         'precio' => 'precio',
         'autor_id' => 'autor',
+        'autor_nuevo' => 'autor nuevo',
         'superheroes' => 'superhéroes',
+        'superheroe_nuevo' => 'superhéroe nuevo',
         'mensaje' => 'mensaje',
         'editorial_id' => 'editorial',
         'sinopsis' => 'sinopsis',
