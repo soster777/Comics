@@ -224,13 +224,8 @@ footer a:hover {
     transform: rotate(-3deg);
 }
 
-/* Banner de la home */
-.banner img {
+/* Carrusel de banners de la home: esquinas redondeadas como la ficha */
+.banner {
     border-radius: 0.75rem;
-    transition: transform 0.15s;
-    width: 100%;
-}
-
-.banner:hover img {
-    transform: scale(1.01);
+    overflow: hidden; /* recorta las imágenes a las esquinas redondeadas */
 }
