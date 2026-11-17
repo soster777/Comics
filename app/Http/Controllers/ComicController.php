@@ -155,14 +155,16 @@ class ComicController extends Controller
             'superheroes' => 'required_without:superheroe_nuevo|array',
             'superheroes.*' => 'exists:superheroes,id',
             'superheroe_nuevo' => 'nullable|string|max:255',
-            'editorial_id' => 'required|exists:editoriales,id',
+            // igual que el autor: "otro" trae el nombre en editorial_nueva
+            'editorial_id' => $request->input('editorial_id') === 'otro' ? 'required' : 'required|exists:editoriales,id',
+            'editorial_nueva' => 'required_if:editorial_id,otro|nullable|string|max:255',
             'sinopsis' => 'nullable|string',
             // opcional; si viene, tiene que ser jpg o png de hasta 2 MB (max va en KB)
             'portada' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
     }
 
-    // si escribieron un autor o superhéroe nuevo, lo guarda y lo deja como uno más de la lista.
+    // si escribieron un autor, editorial o superhéroe nuevo, lo guarda y lo deja como uno más de la lista.
     // firstOrCreate: si ya existe uno con ese nombre lo reusa, así no se duplica
     private function guardarNuevos(array $datos): array
     {
@@ -170,12 +172,16 @@ class ComicController extends Controller
             $datos['autor_id'] = Autor::firstOrCreate(['nombre' => $datos['autor_nuevo']])->id;
         }
 
+        if ($datos['editorial_id'] === 'otro') {
+            $datos['editorial_id'] = Editorial::firstOrCreate(['nombre' => $datos['editorial_nueva']])->id;
+        }
+
         $datos['superheroes'] = $datos['superheroes'] ?? [];
         if (! empty($datos['superheroe_nuevo'])) {
             $datos['superheroes'][] = Superheroe::firstOrCreate(['nombre' => $datos['superheroe_nuevo']])->id;
         }
 
-        unset($datos['autor_nuevo'], $datos['superheroe_nuevo']);
+        unset($datos['autor_nuevo'], $datos['editorial_nueva'], $datos['superheroe_nuevo']);
 
         return $datos;
     }

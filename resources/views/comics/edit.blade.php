@@ -32,13 +32,19 @@
 
                 <div class="col-md-6">
                     <label for="editorial_id" class="form-label">Editorial</label>
-                    <select name="editorial_id" id="editorial_id" class="form-select @error('editorial_id') is-invalid @enderror">
+                    {{-- al elegir "Otra" se muestra el campo para escribir la editorial nueva --}}
+                    <select name="editorial_id" id="editorial_id" class="form-select @error('editorial_id') is-invalid @enderror" onchange="document.getElementById('editorial_nueva').classList.toggle('d-none', this.value !== 'otro')">
                         <option value="">Elegí una editorial</option>
                         @foreach($editoriales as $editorial)
                             <option value="{{ $editorial->id }}" {{ old('editorial_id', $comic->editorial_id) == $editorial->id ? 'selected' : '' }}>{{ $editorial->nombre }}</option>
                         @endforeach
+                        <option value="otro" {{ old('editorial_id') === 'otro' ? 'selected' : '' }}>Otra...</option>
                     </select>
                     @error('editorial_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                    <input type="text" name="editorial_nueva" id="editorial_nueva" placeholder="Nombre de la editorial nueva" aria-label="Nombre de la editorial nueva" class="form-control mt-2 @error('editorial_nueva') is-invalid @enderror {{ old('editorial_id') === 'otro' ? '' : 'd-none' }}" value="{{ old('editorial_nueva') }}">
+                    @error('editorial_nueva')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

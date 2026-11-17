@@ -32,6 +32,7 @@ return [
     // mensajes propios para un campo y una regla puntual
     'custom' => [
         'autor_nuevo' => ['required_if' => 'Escribí el nombre del autor nuevo.'],
+        'editorial_nueva' => ['required_if' => 'Escribí el nombre de la editorial nueva.'],
         'superheroes' => ['required_without' => 'Tildá al menos un superhéroe o escribí uno nuevo.'],
     ],
 
@@ -41,6 +42,7 @@ return [
         'precio' => 'precio',
         'autor_id' => 'autor',
         'autor_nuevo' => 'autor nuevo',
+        'editorial_nueva' => 'editorial nueva',
         'superheroes' => 'superhéroes',
         'superheroe_nuevo' => 'superhéroe nuevo',
         'mensaje' => 'mensaje',
