@@ -2,10 +2,11 @@
 
 @section('title', 'Inicio - Catálogo de Cómics')
 
-@section('content')
+{{-- va en la sección 'banner' y no en 'content' para que quede fuera del container y ocupe todo el ancho --}}
+@section('banner')
 {{-- carrusel de Bootstrap: pasa solo de un banner a otro (data-bs-ride) y también con las flechas.
      data-bs-pause="false": sigue pasando aunque el mouse esté encima --}}
-<div id="banners" class="carousel slide banner mt-4" data-bs-ride="carousel" data-bs-pause="false">
+<div id="banners" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#banners" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Banner 1"></button>
         <button type="button" data-bs-target="#banners" data-bs-slide-to="1" aria-label="Banner 2"></button>
@@ -30,13 +31,15 @@
         <span class="visually-hidden">Siguiente</span>
     </button>
 </div>
+@endsection
 
+@section('content')
 {{-- el h1 no se ve (el banner ya cumple ese lugar), pero lo leen los lectores de pantalla y Google --}}
 <h1 class="visually-hidden">Catálogo de cómics</h1>
 
 <h2 class="titulo-seccion">Últimos agregados</h2>
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
     @forelse($destacados as $comic)
         <div class="col">
             @include('comics._tarjeta', ['comic' => $comic])

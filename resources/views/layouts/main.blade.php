@@ -123,6 +123,9 @@
         </div>
     </nav>
 
+    {{-- fuera del container, así lo que va acá (el carrusel de la home) ocupa todo el ancho --}}
+    @yield('banner')
+
     <div class="container mt-4">
         {{-- mensaje flash: lo manda el controlador con ->with('success', ...) y dura una sola request --}}
         @if (session('success'))

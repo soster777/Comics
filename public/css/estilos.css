@@ -223,9 +223,3 @@ footer a:hover {
     text-shadow: 4px 4px 0 #d32f2f, 7px 7px 0 #000;
     transform: rotate(-3deg);
 }
-
-/* Carrusel de banners de la home: esquinas redondeadas como la ficha */
-.banner {
-    border-radius: 0.75rem;
-    overflow: hidden; /* recorta las imágenes a las esquinas redondeadas */
-}
