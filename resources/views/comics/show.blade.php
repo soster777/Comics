@@ -24,7 +24,6 @@
             <dd class="col-sm-8">{{ $comic->autor->nombre }}</dd>
 
             <dt class="col-sm-4">Superhéroes</dt>
-            {{-- $comic->superheroes es una colección: pluck saca los nombres y join los une con coma --}}
             <dd class="col-sm-8">{{ $comic->superheroes->pluck('nombre')->join(', ') }}</dd>
 
             <dt class="col-sm-4">Editorial</dt>
@@ -37,7 +36,6 @@
         <div class="d-flex gap-2 mt-4">
             <a href="{{ route('comics.index') }}" class="btn btn-outline-secondary">Volver</a>
 
-            {{-- solo el admin ve editar y eliminar --}}
             @admin
                 <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-primary">Editar</a>
 

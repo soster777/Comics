@@ -9,7 +9,6 @@
 
         @forelse($consultas as $consulta)
             <div class="border p-3 mb-3">
-                {{-- created_at es un objeto fecha (Carbon), por eso se puede formatear --}}
                 <p class="small text-muted mb-1">{{ $consulta->created_at->format('d/m/Y H:i') }}</p>
                 <p class="mb-0">{{ $consulta->mensaje }}</p>
             </div>

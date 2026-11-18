@@ -24,7 +24,6 @@
                     <td class="text-nowrap">{{ $consulta->created_at->format('d/m/Y H:i') }}</td>
                     <td>{{ $consulta->nombre }}</td>
                     <td>{{ $consulta->email }}</td>
-                    {{-- user viene del with('user') del controlador; si la mandó un invitado es null --}}
                     <td>{{ $consulta->user ? 'Cliente registrado' : 'Invitado' }}</td>
                     <td>{{ $consulta->mensaje }}</td>
                 </tr>

@@ -1,7 +1,6 @@
 <div class="tarjeta">
 
     <a href="{{ route('comics.show', $comic->id) }}" class="portada portada-{{ $comic->editorial_id }}">
-        {{-- si tiene portada muestro la imagen; si no, queda el cuadro de color con el título --}}
         @if($comic->portada_url)
             <img src="{{ $comic->portada_url }}" alt="Portada de {{ $comic->comic }}">
         @else
@@ -16,7 +15,6 @@
 
         <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-primary btn-sm w-100 mt-auto">Ver detalle</a>
 
-        {{-- editar y eliminar solo los ve el admin; las rutas igual están protegidas con el middleware --}}
         @admin
             <div class="d-flex gap-2 mt-2">
                 <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-outline-secondary btn-sm flex-fill">Editar</a>

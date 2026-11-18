@@ -2,10 +2,7 @@
 
 @section('title', 'Inicio - Catálogo de Cómics')
 
-{{-- va en la sección 'banner' y no en 'content' para que quede fuera del container y ocupe todo el ancho --}}
 @section('banner')
-{{-- carrusel de Bootstrap: pasa solo de un banner a otro (data-bs-ride) y también con las flechas.
-     data-bs-pause="false": sigue pasando aunque el mouse esté encima --}}
 <div id="banners" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#banners" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Banner 1"></button>
@@ -13,7 +10,6 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="5000">
-            {{-- el de Marvel lleva a los cómics de Marvel --}}
             <a href="{{ $marvel ? route('comics.index', ['editorial_id' => $marvel->id]) : route('comics.index') }}">
                 <img src="{{ asset('img/banner-marvel.jpg') }}" alt="Envío gratis en compras de más de $80.000 - Marvel" class="d-block w-100">
             </a>
@@ -34,7 +30,6 @@
 @endsection
 
 @section('content')
-{{-- el h1 no se ve (el banner ya cumple ese lugar), pero lo leen los lectores de pantalla y Google --}}
 <h1 class="visually-hidden">Catálogo de cómics</h1>
 
 <h2 class="titulo-seccion">Últimos agregados</h2>

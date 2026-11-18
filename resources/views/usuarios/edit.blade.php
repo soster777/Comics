@@ -42,7 +42,6 @@
             </div>
 
             <div class="form-check mb-3">
-                {{-- el admin no puede sacarse el rol a sí mismo --}}
                 <input type="checkbox" name="is_admin" id="is_admin" value="1" class="form-check-input" @checked(old('is_admin', $usuario->is_admin)) @disabled($usuario->id === auth()->id())>
                 <label for="is_admin" class="form-check-label">Es administrador</label>
             </div>

@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ComicSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $marvel = Editorial::create(['nombre' => 'Marvel Comics']);
@@ -89,7 +86,6 @@ class ComicSeeder extends Seeder
         ]);
         $comic->superheroes()->attach($batman->id);
 
-        // crossover: un cómic con dos superhéroes, el ejemplo del muchos a muchos
         $comic = Comic::create([
             'comic' => 'Superman/Batman: Enemigos públicos',
             'portada' => $this->portada('superman-batman-enemigos-publicos.jpg'),
@@ -98,12 +94,9 @@ class ComicSeeder extends Seeder
             'autor_id' => $loeb->id,
             'editorial_id' => $dc->id,
         ]);
-        // attach agrega una fila en comic_superheroe por cada id
         $comic->superheroes()->attach([$superman->id, $batman->id]);
     }
 
-    // copia una imagen de database/seeders/portadas al disco "public" (storage/app/public/portadas)
-    // y devuelve el path que se guarda en la columna portada, igual que hace store() en el alta
     private function portada(string $archivo): string
     {
         $path = 'portadas/'.$archivo;

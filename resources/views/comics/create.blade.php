@@ -7,7 +7,6 @@
     <div class="col-lg-7">
         <h2 class="titulo-seccion">Nuevo cómic</h2>
 
-        {{-- enctype multipart/form-data: sin esto el archivo de la portada no viaja --}}
         <form action="{{ route('comics.store') }}" method="POST" class="ficha" enctype="multipart/form-data">
             @csrf
 
@@ -31,7 +30,6 @@
 
                 <div class="col-md-6">
                     <label for="editorial_id" class="form-label">Editorial</label>
-                    {{-- al elegir "Otra" se muestra el campo para escribir la editorial nueva --}}
                     <select name="editorial_id" id="editorial_id" class="form-select @error('editorial_id') is-invalid @enderror" onchange="document.getElementById('editorial_nueva').classList.toggle('d-none', this.value !== 'otro')">
                         <option value="">Elegí una editorial</option>
                         @foreach($editoriales as $editorial)
@@ -50,7 +48,6 @@
 
                 <div class="col-md-6">
                     <label for="autor_id" class="form-label">Autor</label>
-                    {{-- al elegir "Otro" se muestra el campo para escribir el autor nuevo --}}
                     <select name="autor_id" id="autor_id" class="form-select @error('autor_id') is-invalid @enderror" onchange="document.getElementById('autor_nuevo').classList.toggle('d-none', this.value !== 'otro')">
                         <option value="">Elegí un autor</option>
                         @foreach($autores as $autor)
@@ -69,7 +66,6 @@
 
                 <div class="col-12">
                     <span class="form-label d-block">Superhéroes (uno o más)</span>
-                    {{-- checkboxes con name="superheroes[]": al servidor llega un array con los ids tildados --}}
                     <div class="d-flex flex-wrap gap-3">
                         @foreach($superheroes as $superheroe)
                             <div class="form-check">

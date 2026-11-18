@@ -1,8 +1,5 @@
 <?php
 
-// mensajes de validación en castellano para las reglas que usa el proyecto.
-// Laravel los toma porque en el .env está APP_LOCALE=es.
-// si una regla no está acá, usa el mensaje en inglés que trae el framework
 return [
     'required' => 'El campo :attribute es obligatorio.',
     'string' => 'El campo :attribute tiene que ser texto.',
@@ -29,14 +26,12 @@ return [
         'array' => 'El campo :attribute tiene que tener al menos :min elementos.',
     ],
 
-    // mensajes propios para un campo y una regla puntual
     'custom' => [
         'autor_nuevo' => ['required_if' => 'Escribí el nombre del autor nuevo.'],
         'editorial_nueva' => ['required_if' => 'Escribí el nombre de la editorial nueva.'],
         'superheroes' => ['required_without' => 'Tildá al menos un superhéroe o escribí uno nuevo.'],
     ],
 
-    // nombres lindos para los campos, así el mensaje dice "título" y no "comic"
     'attributes' => [
         'comic' => 'título',
         'precio' => 'precio',

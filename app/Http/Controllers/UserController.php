@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-// gestión de usuarios del admin. Mismo esquema que EditorialController
 class UserController extends Controller
 {
     public function index()
@@ -34,7 +33,6 @@ class UserController extends Controller
             'email' => $datos['email'],
             'password' => Hash::make($datos['password']),
         ]);
-        // is_admin no está en $fillable, así que se asigna a mano (solo el admin llega acá)
         $usuario->is_admin = $request->boolean('is_admin');
         $usuario->save();
 
@@ -55,7 +53,6 @@ class UserController extends Controller
         $datos = $request->validate([
             'name' => 'required|string|max:255',
             'email' => "required|email|max:255|unique:users,email,{$id}",
-            // al editar la contraseña es opcional: si viene vacía se deja la que tenía
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
@@ -64,7 +61,6 @@ class UserController extends Controller
         if (! empty($datos['password'])) {
             $usuario->password = Hash::make($datos['password']);
         }
-        // el admin no se puede sacar el rol a sí mismo, si no se queda afuera del panel
         if ($usuario->id !== auth()->id()) {
             $usuario->is_admin = $request->boolean('is_admin');
         }
@@ -81,7 +77,6 @@ class UserController extends Controller
             return redirect()->route('admin.usuarios.index')->with('error', 'No podés eliminar tu propio usuario.');
         }
 
-        // sus consultas no se borran: la FK user_id tiene nullOnDelete y quedan sin usuario
         $usuario->delete();
 
         return redirect()->route('admin.usuarios.index')->with('success', 'El usuario fue eliminado exitosamente.');

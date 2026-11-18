@@ -7,7 +7,6 @@
     <div class="col-md-6 col-lg-5">
         <h2 class="titulo-seccion">Iniciar sesión</h2>
 
-        {{-- el formulario lo muestra showLogin (GET) y lo procesa login (POST) --}}
         <form action="{{ route('auth.login.process') }}" method="POST">
             @csrf
 
@@ -21,7 +20,6 @@
 
             <div class="mb-4">
                 <label for="password" class="form-label">Contraseña</label>
-                {{-- la contraseña nunca se rellena con old() --}}
                 <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror">
                 @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>

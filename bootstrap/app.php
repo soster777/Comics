@@ -13,18 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // alias de los middlewares propios, para poder escribir ->middleware('admin') en las rutas
-        // (en Laravel 10, como el ejemplo de clase, esto iba en app/Http/Kernel.php)
         $middleware->alias([
             'admin' => EsAdmin::class,
         ]);
 
-        // a dónde manda el middleware 'auth' al que no inició sesión.
-        // por defecto busca una ruta llamada 'login' y la nuestra se llama 'auth.login'
-        // (en Laravel 10 esto iba en app/Http/Middleware/Authenticate.php)
         $middleware->redirectGuestsTo(fn () => route('auth.login'));
 
-        // en Render el https lo atiende un proxy: así Laravel arma los links con https y no con http
         $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {

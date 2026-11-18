@@ -39,7 +39,6 @@
                             <div class="d-inline-flex gap-2">
                                 <a href="{{ route('admin.usuarios.edit', $usuario->id) }}" class="btn btn-outline-secondary btn-sm">Editar</a>
 
-                                {{-- a uno mismo no se le muestra el botón (igual el controlador lo frena) --}}
                                 @if($usuario->id !== auth()->id())
                                     <form action="{{ route('admin.usuarios.destroy', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Seguro que querés eliminar este usuario?')">
                                         @csrf

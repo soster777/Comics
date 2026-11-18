@@ -10,7 +10,6 @@
         <form action="{{ route('contacto.store') }}" method="POST">
             @csrf
 
-            {{-- si está logueado, le precargo nombre y email con los de su cuenta --}}
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" name="nombre" id="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{ old('nombre', auth()->user()?->name) }}">

@@ -7,7 +7,6 @@
     <div class="col-lg-7">
         <h2 class="titulo-seccion">Editar cómic</h2>
 
-        {{-- enctype multipart/form-data: sin esto el archivo de la portada no viaja --}}
         <form action="{{ route('comics.update', $comic->id) }}" method="POST" class="ficha" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -32,7 +31,6 @@
 
                 <div class="col-md-6">
                     <label for="editorial_id" class="form-label">Editorial</label>
-                    {{-- al elegir "Otra" se muestra el campo para escribir la editorial nueva --}}
                     <select name="editorial_id" id="editorial_id" class="form-select @error('editorial_id') is-invalid @enderror" onchange="document.getElementById('editorial_nueva').classList.toggle('d-none', this.value !== 'otro')">
                         <option value="">Elegí una editorial</option>
                         @foreach($editoriales as $editorial)
@@ -51,7 +49,6 @@
 
                 <div class="col-md-6">
                     <label for="autor_id" class="form-label">Autor</label>
-                    {{-- al elegir "Otro" se muestra el campo para escribir el autor nuevo --}}
                     <select name="autor_id" id="autor_id" class="form-select @error('autor_id') is-invalid @enderror" onchange="document.getElementById('autor_nuevo').classList.toggle('d-none', this.value !== 'otro')">
                         <option value="">Elegí un autor</option>
                         @foreach($autores as $autor)
@@ -70,7 +67,6 @@
 
                 <div class="col-12">
                     <span class="form-label d-block">Superhéroes (uno o más)</span>
-                    {{-- checkboxes con name="superheroes[]": al servidor llega un array con los ids tildados --}}
                     <div class="d-flex flex-wrap gap-3">
                         @foreach($superheroes as $superheroe)
                             <div class="form-check">
@@ -91,7 +87,6 @@
                 <div class="col-12">
                     <label for="portada" class="form-label">Portada (JPG o PNG de hasta 2 MB)</label>
 
-                    {{-- si ya tiene portada, la muestro y doy la opción de sacarla --}}
                     @if($comic->portada_url)
                         <div class="d-flex align-items-end gap-3 mb-2">
                             <img src="{{ $comic->portada_url }}" alt="Portada actual" class="img-thumbnail" style="max-width: 120px;">

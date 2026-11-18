@@ -3,11 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
-// migración de datos: no cambia tablas, actualiza los precios de los cómics que ya están cargados.
-// el seeder solo corre con la base vacía, así que sin esto la base de Render seguía con los precios viejos
 return new class extends Migration
 {
-    // título => [precio nuevo, precio viejo]
     private array $precios = [
         'Spider-Man: Blue' => [32000, 8500],
         'Batman: Year One' => [38000, 9200],
@@ -25,7 +22,6 @@ return new class extends Migration
         }
     }
 
-    // el rollback deja los precios como estaban
     public function down(): void
     {
         foreach ($this->precios as $titulo => [$nuevo, $viejo]) {

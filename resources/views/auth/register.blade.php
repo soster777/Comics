@@ -35,7 +35,6 @@
             </div>
 
             <div class="mb-4">
-                {{-- la regla confirmed compara este campo con password --}}
                 <label for="password_confirmation" class="form-label">Repetí la contraseña</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
             </div>

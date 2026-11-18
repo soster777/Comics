@@ -18,7 +18,6 @@
 
                 <div class="col-12 col-md-4 order-2 order-md-1">
                     <form action="{{ route('comics.index') }}" method="GET">
-                        {{-- si estoy viendo una editorial, la mando también para buscar dentro de esa --}}
                         @if(request('editorial_id'))
                             <input type="hidden" name="editorial_id" value="{{ request('editorial_id') }}">
                         @endif
@@ -31,27 +30,21 @@
 
                 <div class="col-12 col-md-4 order-1 order-md-2 text-center">
                     <a href="{{ route('home') }}" class="logo">
-                        {{-- LOGO: si tenés uno, guardalo en public/img/logo.png y reemplazá
-                             el texto de abajo por:
-                             <img src="{{ asset('img/logo.png') }}" alt="Logo" height="45"> --}}
                         Cómics
                     </a>
                 </div>
 
                 <div class="col-12 col-md-4 order-3">
-                    {{-- menú de la cuenta: el dropdown lo abre el JS de Bootstrap que se carga al final --}}
                     <div class="dropdown text-md-end">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Mi cuenta">
                             <i class="bi bi-person-circle fs-5"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            {{-- @guest: solo lo ve quien NO inició sesión --}}
                             @guest
                                 <li><a class="dropdown-item" href="{{ route('auth.login') }}">Iniciar sesión</a></li>
                                 <li><a class="dropdown-item" href="{{ route('auth.register') }}">Registrarse</a></li>
                             @endguest
 
-                            {{-- @auth: solo lo ve quien inició sesión --}}
                             @auth
                                 <li>
                                     <span class="dropdown-item-text small text-muted">
@@ -61,7 +54,6 @@
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    {{-- el logout va por POST con @csrf, no con un link --}}
                                     <form action="{{ route('auth.logout') }}" method="POST" class="m-0">
                                         @csrf
                                         <button type="submit" class="dropdown-item">Cerrar sesión</button>
@@ -79,8 +71,6 @@
     <nav class="menu-azul">
         <div class="container">
             <ul class="nav justify-content-center">
-                {{-- @admin: directiva propia (está en AppServiceProvider). El admin ve su menú de gestión
-                     y el resto ve el del catálogo --}}
                 @admin
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('comics.index') ? 'active' : '' }}" href="{{ route('comics.index') }}">Cómics</a>
@@ -112,7 +102,6 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('contacto.create') ? 'active' : '' }}" href="{{ route('contacto.create') }}">Contacto</a>
                 </li>
-                {{-- el historial es para el cliente: acá ya sabemos que no es admin --}}
                 @auth
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('contacto.mis') ? 'active' : '' }}" href="{{ route('contacto.mis') }}">Mis consultas</a>
@@ -123,11 +112,9 @@
         </div>
     </nav>
 
-    {{-- fuera del container, así lo que va acá (el carrusel de la home) ocupa todo el ancho --}}
     @yield('banner')
 
     <div class="container mt-4">
-        {{-- mensaje flash: lo manda el controlador con ->with('success', ...) y dura una sola request --}}
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -135,7 +122,6 @@
             </div>
         @endif
 
-        {{-- mensaje de error flash: por ejemplo, cuando no se puede borrar una editorial con cómics --}}
         @if (session('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session('error') }}
@@ -168,7 +154,6 @@
                 </div>
             </div>
             <hr>
-            {{-- date('Y') pone el año actual, así no hay que cambiarlo a mano --}}
             <p class="small text-center mb-0">&copy; {{ date('Y') }} Catálogo de cómics. Todos los derechos reservados.</p>
         </div>
     </footer>

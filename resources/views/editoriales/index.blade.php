@@ -27,7 +27,6 @@
                     @foreach($editoriales as $editorial)
                         <tr>
                             <td>{{ $editorial->nombre }}</td>
-                            {{-- comics_count lo agrega el withCount del controlador --}}
                             <td class="text-center">{{ $editorial->comics_count }}</td>
                             <td class="text-end">
                                 <div class="d-inline-flex gap-2">
